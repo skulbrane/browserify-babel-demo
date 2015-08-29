@@ -1,5 +1,14 @@
 module.exports = function(grunt) {
     grunt.initConfig({
+        uglify: {
+            dist: {
+                files: {
+                    "dist/module.min.js": [
+                        "dist/module.js"
+                    ]
+                }
+            }
+        },
         browserify: {
             dist: {
                 options: {
@@ -25,9 +34,11 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-contrib-watch");
 
     grunt.registerTask("default", ["watch"]);
     grunt.registerTask("build", ["browserify"]);
+    grunt.registerTask("uglify" ["uglify"]);
 };
